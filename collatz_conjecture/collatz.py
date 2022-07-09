@@ -1,6 +1,9 @@
 import turtle
 import os
 from PIL import Image
+import sys
+sys.path.insert(1, '../utils/')
+from setup_background import setup_background
         
         
 class Collatz:
@@ -96,45 +99,13 @@ class Collatz:
             return
         
         
-    def set_turtle(self, bg, lc, filename=None):
+    def set_turtle(self, bg, lc, size, starting_point, filename=None):
         '''
-        Set the background of the image and initalize the setup to draw the
-        visual representation of the collatz conjecture. Optionally save the
-        image.
+        Set the background of the image and draw the collatz conjecture
+        according to the parameters passed in by the user. Optionally 
+        saves the image to a file.
         '''
-        window = turtle.Screen()
-        window.tracer(False)
-        window.colormode(255)
-        turtle.speed(0)
-        window.screensize(500,500)
-        window.bgcolor(bg)
-        
-        canvas = window.getcanvas()
-        height = window.getcanvas()._canvas.winfo_height()
-        width = window.getcanvas()._canvas.winfo_width()
-        heading = turtle.heading()
-
-        turtle.hideturtle()
-        turtle.pensize(1)
-        
-        turtle.pu()
-        turtle.goto(-width/2-2, -height/2+3)
-        turtle.fillcolor(bg)
-        turtle.begin_fill()
-        turtle.setheading(0)
-        turtle.forward(width)
-        turtle.setheading(90)
-        turtle.forward(height)
-        turtle.setheading(180)
-        turtle.forward(width)
-        turtle.setheading(270)
-        turtle.forward(height)
-        turtle.end_fill()
-        
-        turtle.pu()
-        turtle.goto(50,250)
-        turtle.setheading(heading)
-        turtle.pd()
+        setup_background(size, bg, starting_point)
         turtle.pencolor(lc)
         self.draw_collatz(self.node, '')
 

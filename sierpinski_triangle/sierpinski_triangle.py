@@ -1,6 +1,9 @@
 import turtle
 import os
 from PIL import Image
+import sys
+sys.path.insert(1, '../utils/')
+from setup_background import setup_background
 
 
 class Sierpinski_triangle:
@@ -40,38 +43,10 @@ class Sierpinski_triangle:
 
     def draw_sierpinski(self, bg, lc, size, starting_point, filename=None):
         '''
-        Set the background of the image and initalize the setup to draw the
-        visual representation of the collatz conjecture. Optionally save the
-        image.
+        Set the background of the image and draw the triangle according to the
+        parameters passed in by the user. Optionally saves the image to a file.
         '''
-        turtle.tracer(False)
-        turtle.colormode(255)
-        turtle.speed(0)
-        width, height = size
-        turtle.setup(width=width, height=height)
-        heading = turtle.heading()
-
-        turtle.hideturtle()
-        turtle.pensize(1)
-
-        turtle.pu()
-        turtle.goto(-width/2-2, -height/2+3)
-        turtle.fillcolor(bg)
-        turtle.begin_fill()
-        turtle.setheading(0)
-        turtle.forward(width*2)
-        turtle.setheading(90)
-        turtle.forward(height*2)
-        turtle.setheading(180)
-        turtle.forward(width*2)
-        turtle.setheading(270)
-        turtle.forward(height*2)
-        turtle.end_fill()
-
-        turtle.pu()
-        turtle.goto(starting_point)
-        turtle.setheading(heading)
-        turtle.pd()
+        setup_background(size, bg, starting_point)
         turtle.pencolor(lc)
 
         self.build_sierpinski(self.depth, self.length)

@@ -1,6 +1,9 @@
 import os
 import turtle
 from PIL import Image
+import sys
+sys.path.insert(1, '../utils/')
+from setup_background import setup_background
 
 class Number:
     def __init__(self, value):
@@ -12,6 +15,11 @@ class Number:
 
         
     def trace_number(self, length):
+        '''
+        Converts the number to a string of only the digits specified. The 
+        method then draws the number, multiplying the current digit by 60
+        degrees for the turns.
+        '''
         num_str = str(self.number)
         num_str = num_str.replace('.', '')
         
@@ -23,48 +31,17 @@ class Number:
 
     def draw_number(self, bg, lc, length, size, starting_point, filename=None):
         '''
-        Set the background of the image and initalize the setup to draw the
-        visual representation of the collatz conjecture. Optionally save the
-        image.
-        '''
-        turtle.tracer(False)
-        turtle.colormode(255)
-        turtle.speed(0)
-        width, height = size
-        turtle.setup(width=width, height=height)
-
-        width, height = size
-        heading = turtle.heading()
-
-        turtle.hideturtle()
-        turtle.pensize(1)
-
-        turtle.pu()
-        turtle.goto(-width/2-2, -height/2+3)
-        turtle.fillcolor(bg)
-        turtle.begin_fill()
-        turtle.setheading(0)
-        turtle.forward(width*2)
-        turtle.setheading(90)
-        turtle.forward(height*2)
-        turtle.setheading(180)
-        turtle.forward(width*2)
-        turtle.setheading(270)
-        turtle.forward(height*2)
-        turtle.end_fill()
-
+        Set the background of the image and draw the number according to the 
+        parameters passed in by the user. Optionally saves the image to a file.
+        '''        
+        setup_background(size, bg, starting_point)
         turtle.radians()
-        turtle.pu()
-        turtle.goto(starting_point)
-        turtle.setheading(heading)
-        turtle.pd()
         turtle.pencolor(lc)
         self.trace_number(length)
 
         turtle.update()
 
         width, height = size
-
 
         if filename:
             turtle.getscreen().getcanvas().postscript(file= filename+'.eps', colormode='color', width=width, height=height)
