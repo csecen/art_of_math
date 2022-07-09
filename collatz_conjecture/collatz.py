@@ -109,9 +109,9 @@ class Collatz:
         window.screensize(500,500)
         window.bgcolor(bg)
         
-        canvas = turtle.getcanvas()
-        height = turtle.getcanvas()._canvas.winfo_height()
-        width = turtle.getcanvas()._canvas.winfo_width()
+        canvas = window.getcanvas()
+        height = window.getcanvas()._canvas.winfo_height()
+        width = window.getcanvas()._canvas.winfo_width()
         heading = turtle.heading()
 
         turtle.hideturtle()
