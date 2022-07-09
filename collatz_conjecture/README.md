@@ -6,10 +6,10 @@
 1) If the number is even, divide it by 2
 2) If the number is odd, multiply it by 3 and add 1
 
-Running this code is very simple, the following to provide the code for the game, to allow users to play with these rules and experiement with the possible interaction. Running the code in fairly simple:
+Running this code is very simple, the following to provide the code for the game, to allow users to play with these rules and experiement with the possible interaction. To run:
 1) Import the code using <code>from collatz import Collatz</code>
 2) Create an instance of the visualization with <code>c = Collatz(X)</code>. The value X must be an integer and represents the top number you are supplying to the conjecture. Following the rule, higher numbers may be added to the tree.
-3) Run the game will <code>c.set_turtle(bg, lc, size, starting_point, filename)</code>
+3) Run the code <code>c.set_turtle(bg, lc, size, starting_point, filename)</code>
     - The bg argument is the background color supplied to the turtle module.
     - The lc argument is the line color supplied to the turtle module.
     - The size argument is the size of the visualization.

@@ -2,12 +2,12 @@
 
 ##### The Sierpinski Triangle is a famous example of a fractal recursizely made of equilateral triangles. More information can be found [here](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle).
 
-##### The goal of this application is to visualize a Sierpinski triangle. Running the code in fairly simple:
+##### The goal of this application is to visualize a Sierpinski triangle. Running the code is fairly simple:
 1) Import the code using <code>from sierpinski_triangle import Sierpinski_triangle</code>
-2) Create an instance of the game <code>st = Sierpinski_triangle(length, depth)</code>. 
+2) Create an instance sierpinski triangle code <code>st = Sierpinski_triangle(length, depth)</code>. 
     - The length argument is the length of the base of the triangle in pixels.
     - The depth argument is the recursize depth of the triangle.
-3) Run the game will <code>st.draw_sierpinski(bg, lc, size, starting_point, filename)</code>
+3) Run the code <code>st.draw_sierpinski(bg, lc, size, starting_point, filename)</code>
     - The bg argument is the background color supplied to the turtle module.
     - The lc argument is the line color supplied to the turtle module.
     - The size argument is the size of the visualization.
