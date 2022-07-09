@@ -28,5 +28,3 @@ Running this code is very simple, the following to provide the code for the game
     c.set_turtle(bg, lc, size, starting_point, filename)
 
 ![Collatz Conjecture example visualization](./images/collatz.jpg)
-
-##### When creating an instance of the game the board is randomly generated. If you want to provide your own board, first create a square numpy 2d array. Then just call the define_board method as follows: <code>life.define_board(board)</code> where the board argument is the numpy array you just created. Then you can run the game normally.
