@@ -7,19 +7,32 @@ from setup_background import setup_background
 
 
 class Sierpinski_triangle:
-    def __init__(self, length, depth):
+    '''
+    This class is used to draw a normal Sierpinski triangle using the turtle
+    module.
+    '''
+    
+    def __init__(self, length: int, depth: int):
         '''
         Initialize the length and the depth of the triangle.
+        
+        Parameters:
+            length --> length of the base of the triangle in pixels
+            depth  --> the recursize depth of the sierpinski triangle
         '''
         self.length = length
         self.depth = depth
         
         
-    def build_sierpinski(self, depth, length):
+    def build_sierpinski(self, depth: int, length: int):
         '''
         Recursively draw the sierpinski triangle. When the depth is 0, draw a
         single triangle. Otherwise, follow the rules of the sierpinski
         triangle to complete the rest.
+        
+        Parameters:
+            depth  --> the recursize depth of the sierpinski triangle
+            length --> length of the base of the triangle in pixels
         '''
         if depth == 0:
             for _ in range(3):
@@ -45,6 +58,14 @@ class Sierpinski_triangle:
         '''
         Set the background of the image and draw the triangle according to the
         parameters passed in by the user. Optionally saves the image to a file.
+        
+        Parameters:
+            bg             --> background color of image
+            lc             --> line color of image
+            size           --> size of the image
+            starting_point --> starting point of the image
+            filename       --> Optional: filename of the image file. If not
+                               provided, image will not be saved.
         '''
         setup_background(size, bg, starting_point)
         turtle.pencolor(lc)
@@ -56,7 +77,8 @@ class Sierpinski_triangle:
         if filename:
             turtle.getscreen().getcanvas().postscript(file= filename+'.eps', colormode='color')
             img = Image.open(filename + '.eps') 
-            img.save(filename + '.jpg')
+            if not os.path.exists('./images'): os.makedirs('./images')
+            img.save(f'images/{filename}.jpg')
             img.close()
             os.remove(f'{filename}.eps')
 
