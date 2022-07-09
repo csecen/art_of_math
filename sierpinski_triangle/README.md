@@ -14,7 +14,7 @@
     - The starting_point argument is where the visualization will start on the screen.
     - The filename argument is optional. If supplied it saves the file as a JPG with the given filename.
 
-##### The following code will produce the gif below:
+##### The following code will produce the image below:
 
     from sierpinski_triangle import Sierpinski_triangle
     st = Sierpinski_triangle(850, 7)
