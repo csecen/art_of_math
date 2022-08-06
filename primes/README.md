@@ -1,6 +1,7 @@
 ### Prime Number Visualizations
 
 ##### This directory contains a few different files that display prime numbers in various ways.
+##### **NOTE** All files require numpy and colormap names come from matplotlib.
 
 ##### The first of these files is the twin_primes_graph.py file. It graphs the line formed by twin primes where they intersect the function |6x+1|. Twin primes are prime numbers that are separated by a single integer. For instance 3 and 5 or 17 and 19 are twin prime pairs, whereas 13 and 17 are not. Currently the graph formed by running this code displays the first 36 pairs of twin primes where x is 14000. 
 
