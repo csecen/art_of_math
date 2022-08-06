@@ -1,6 +1,6 @@
 ### Collatz Conjecture
 
-##### The Collatz Conjecture is a famous unsolved problem in mathematics. The comjecture simply asks whether or not all numbers will reduce to 1 by following two simple equations. More information can be found [here](https://en.wikipedia.org/wiki/Collatz_conjecture).
+##### The Collatz Conjecture is a famous unsolved problem in mathematics. The conjecture simply asks whether or not all numbers will reduce to 1 by following two simple equations. More information can be found [here](https://en.wikipedia.org/wiki/Collatz_conjecture).
 
 ##### The goal of this application is merely to visualize the tree that can be formed by applying two simple rules to a list of numbers. The two rules are:
 1) If the number is even, divide it by 2
