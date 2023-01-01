@@ -1,15 +1,19 @@
 {
     "G": 9.8,
-    "L1": 1.0,
-    "L2": 1.0,
-    "M1": 1.0,
-    "M2": 1.0,
-    "dt": 0.05,
+    "starting_states": [
+        {
+            "L1": 1.0,
+            "L2": 1.0,
+            "M1": 1.0,
+            "M2": 1.0,
+            "th1": 120.0,
+            "w1": 0.0,
+            "th2": -10.0,
+            "w2": 0.0
+        }
+    ],
+    "dt": 0.03,
     "time": 20,
-    "th1": 120.0,
-    "w1": 0.0,
-    "th2": -10.0,
-    "w2": 0.0,
-    "filename": "double_pendulum.gif",
+    "filename": "double_pendulum2.gif",
     "style": "trace"
 }
