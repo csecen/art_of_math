@@ -4,18 +4,18 @@
     "L2": 1.0,
     "M1": 1.0,
     "M2": 1.0,
-    "th1": 121.0,
+    "th1": 130.0,
     "w1": 0.0,
-    "th2": -10.0,
+    "th2": 102.0,
     "w2": 0.0,
     "dt": 0.03,
     "time": 40,
-    "filename": "multi.gif",
+    "filename": "multi_4.gif",
     "style": "multi_ani",
     "sizex": 10,
     "sizey": 10,
     "background": "black",
     "cmap_name": "twilight",
     "color": "mediumaquamarine",
-    "num_pendulums": 100
+    "num_pendulums": 10000
 }

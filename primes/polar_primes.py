@@ -43,7 +43,7 @@ def main():
     ax.axis('off')
     
     if filename:
-        plt.savefig(filename, bbox_inches='tight', pad_inches=0)
+        plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
     plt.show()
     
     

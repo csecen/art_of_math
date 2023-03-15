@@ -51,17 +51,12 @@ def tracer(i, pend, line, line2):
     line2.set_data(pend[0][2][i-20:i+1], pend[0][3][i-20:i+1]+1)
     return line, line2,
 
-# def init(lines):
-#     for line in lines:
-#         line.set_data([],[])
-#     return lines
 
 def multi(i, pend, lines):
     
     for idx, l in enumerate(lines):
         thisx = [0, pend[idx][0][i], pend[idx][2][i]]
         thisy = [1, pend[idx][1][i]+1, pend[idx][3][i]+1]
-#         line = lines[idx]
         l.set_data(thisx, thisy)
     
     return lines
