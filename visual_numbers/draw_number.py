@@ -1,9 +1,9 @@
 import os
 import turtle
 from PIL import Image
-import sys
-sys.path.insert(1, '../utils/')
-from setup_background import setup_background
+# import sys
+# sys.path.insert(1, '../utils/')
+from utils import setup_background
 
 class Number:
     def __init__(self, value):
@@ -12,7 +12,7 @@ class Number:
         numbers specified by the user.
         
         Parameter:
-            value --> the number that will be draw
+            value --> the number that will be drawn
         '''
         self.number = value
 
