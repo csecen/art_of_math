@@ -62,16 +62,23 @@ def multi(i, pend, lines):
     return lines
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Produce different depictions of a double pendulum')
-    parser.add_argument('filename', help='name of config file')
-    args = parser.parse_args()
-    
-    config_file = vars(args)['filename']
-    
-    with open(config_file, 'r') as f:
-        config = json.load(f)
-    
+def produce_image(config):
+    # parser = argparse.ArgumentParser(description='Produce different depictions of a double pendulum')
+    # parser.add_argument('filename', help='name of config file')
+    # args = parser.parse_args()
+    #
+    # config_file = vars(args)['filename']
+    #
+    # with open(config_file, 'r') as f:
+    #     config = json.load(f)
+
+    # get the config parameters
+    if 'frame_idx' not in config:
+        frame_idx = None
+    else:
+        frame_idx = config['frame_idx']
+
+    # get the parameters of the pendulum
     G = config['G']  # acceleration due to gravity, in m/s^2
     L1 = config['L1']  # length of pendulum 1 in m
     L2 = config['L2']  # length of pendulum 2 in m
@@ -106,7 +113,7 @@ def main():
         x2 = L2*sin(y[:, 2]) + x1
         y2 = -L2*cos(y[:, 2]) + y1
         
-        pendulums.append((x1,y1,x2,y2))
+        pendulums.append((x1, y1, x2, y2))
         
 #     fig = plt.figure()
 #     fig.patch.set_facecolor('black')
@@ -139,7 +146,7 @@ def main():
         ani.save(config['filename'], writer='pillow', fps=1 / dt)
     elif config['style'] == 'multi_ani':
         cmap = plt.get_cmap(config['cmap_name'])
-        colors = cmap(np.linspace(0,1,len(pendulums)))
+        colors = cmap(np.linspace(0, 1, len(pendulums)))
         
         lines = []
         for i in range(len(colors)):
@@ -150,8 +157,21 @@ def main():
                                       interval=dt*1000, blit=True)
         ani.save(config['filename'], writer='pillow', fps=1 / dt)
     
-#     elif config['style'] == 'multi_still':
-        
+    elif config['style'] == 'multi_still':
+        cmap = plt.get_cmap(config['cmap_name'])
+        colors = cmap(np.linspace(0, 1, len(pendulums)))
+
+        lines = []
+        for i in range(len(colors)):
+            line = ax.plot([], [], color=colors[i], lw=2)
+            lines.append(line[0])
+
+        lines = multi(frame_idx, pend=pendulums, lines=lines)
+        for l in lines:
+            ax.add_line(l)
+
+        plt.savefig(config['filename'], bbox_inches='tight', pad_inches=0, dpi=400)
+
     elif config['style'] == 'path':
         if 'color' in config:
             ax.plot(pendulums[0][2], pendulums[0][3]+1, color=config['color'])
@@ -169,5 +189,5 @@ def main():
     
     
     
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
