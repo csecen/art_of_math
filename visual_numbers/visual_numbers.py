@@ -28,6 +28,7 @@ def produce_image(params):
     theta = params['theta']
     constant = params['constant']
     gradient = params['gradient']
+    label = params['label']
 
     fig, ax = plt.subplots()
     fig.set_size_inches(size)
@@ -39,12 +40,16 @@ def produce_image(params):
 
     if constant == 'e':
         number = mp.e
+        title = 'E'
     elif constant == 'pi':
         number = mp.pi
+        title = 'PI'
     elif constant == 'phi':
         number = mp.phi
+        title = 'PHI'
     elif constant == 'euler':
         number = mp.euler
+        title = 'EULER'
 
     num_str = str(number)
     num_str = num_str.replace('.', '')
@@ -68,12 +73,14 @@ def produce_image(params):
         ax.imshow([[0, 0], [1, 1]], cmap=cm.get_cmap(gradient), interpolation='bicubic', extent=plotlim, aspect='equal')
 
     ax.axis('off')
-
+    if label:
+        ax.set_title(r'$\mathbb{%s}$' %(str(title)), fontsize=70, color="white", y=1.0, pad=-20)
+    
     if save:
         path = f"output/visual_numbers/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{gradient if gradient else background}_{color}_theta{theta}_n{n}_{constant}.png'
+        filename = path + f'{gradient if gradient else background}_{color}_theta{theta}_n{n}_{constant}{"_label" if label else ""}.png'
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
     if show:
         plt.show()
