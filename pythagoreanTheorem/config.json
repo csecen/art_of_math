@@ -1,0 +1,57 @@
+[
+  {
+    "function": "pythagorean_theorem",
+    "params": {
+      "background": "aliceblue",
+      "orientation": "6810_upright",
+      "size": [20,20],
+      "save": true,
+      "colors": ["skyblue", "midnightblue", "deepskyblue"],
+      "show": false
+    }
+  },
+  {
+    "function": "pythagorean_theorem",
+    "params": {
+      "background": "aliceblue",
+      "orientation": "6810_sideways",
+      "size": [20,20],
+      "save": true,
+      "colors": ["skyblue", "midnightblue", "deepskyblue"],
+      "show": false
+    }
+  },
+  {
+    "function": "pythagorean_theorem",
+    "params": {
+      "background": "aliceblue",
+      "orientation": "51213_upsidedown",
+      "size": [20,20],
+      "save": true,
+      "colors": ["skyblue", "midnightblue", "deepskyblue"],
+      "show": false
+    }
+  },
+  {
+    "function": "pythagorean_theorem",
+    "params": {
+      "background": "aliceblue",
+      "orientation": "51213_backwards",
+      "size": [20,20],
+      "save": true,
+      "colors": ["skyblue", "midnightblue", "deepskyblue"],
+      "show": false
+    }
+  },
+  {
+    "function": "pythagorean_theorem",
+    "params": {
+      "background": "aliceblue",
+      "orientation": "51213_upright",
+      "size": [20,20],
+      "save": true,
+      "colors": ["skyblue", "midnightblue", "deepskyblue"],
+      "show": false
+    }
+  }
+]

@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from pathlib import Path
 
 
 def produce_image(params):
@@ -8,7 +9,7 @@ def produce_image(params):
     background = params['background']
     orientation = params['orientation']
     size = tuple(params['size'])
-    filename = params['filename']
+    save = params['save']
     colors = params['colors']
     show = params['show']
 
@@ -35,11 +36,11 @@ def produce_image(params):
     coor = coors[orientation]
 
     # add rectangle to plot
-    ax.add_patch(Rectangle(coor['xy'][0], coor['width'][0], coor['height'][0], color='skyblue',
+    ax.add_patch(Rectangle(coor['xy'][0], coor['width'][0], coor['height'][0], color=colors[0],
                            angle=coor['angle'][0]))
-    ax.add_patch(Rectangle(coor['xy'][1], coor['width'][1], coor['height'][1], color='midnightblue',
+    ax.add_patch(Rectangle(coor['xy'][1], coor['width'][1], coor['height'][1], color=colors[1],
                            angle=coor['angle'][1]))
-    ax.add_patch(Rectangle(coor['xy'][2], coor['width'][2], coor['height'][2], color='deepskyblue',
+    ax.add_patch(Rectangle(coor['xy'][2], coor['width'][2], coor['height'][2], color=colors[2],
                            angle=coor['angle'][2]))
 
     # set figure parameters
@@ -48,7 +49,11 @@ def produce_image(params):
     ax.axis('off')
 
     # display plot
-    if filename:
+    if save:
+        path = f"output/pythagorean/{params['size'][0]}x{params['size'][1]}/"
+        Path(path).mkdir(parents=True, exist_ok=True)
+
+        filename = path + f"{background}_{'_'.join(colors)}_{orientation}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:
