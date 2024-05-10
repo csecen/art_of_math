@@ -1,0 +1,146 @@
+[
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "pi",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": null
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "euler",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": null
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "phi",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 30,
+      "gradient": null,
+      "label": null
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "e",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": null
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "pi",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": true
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "euler",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": true
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "phi",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 30,
+      "gradient": null,
+      "label": true
+    }
+  },
+  {
+    "function": "visual_numbers",
+    "params": {
+      "n": 70000,
+      "constant": "e",
+      "background": "black",
+      "size": [
+        20,
+        10
+      ],
+      "save": true,
+      "show": false,
+      "color": "lavender",
+      "theta": 20,
+      "gradient": null,
+      "label": true
+    }
+  }
+]

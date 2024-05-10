@@ -1,0 +1,29 @@
+[
+  {
+    "function": "equation_graphs",
+    "params": {
+      "background": "wheat",
+      "size": [
+        30,
+        30
+      ],
+      "save": true,
+      "show": false,
+      "color": "r",
+      "graph": "heart",
+      "font_color": "black"
+    }
+  },
+  {
+    "function": "equation_graphs",
+    "params": {
+        "background": "wheat",
+        "size": [30,30],
+        "save": true,
+        "show": false,
+        "color": "darkgreen",
+        "graph": "clover",
+        "font_color": "black"
+    }
+  }
+]

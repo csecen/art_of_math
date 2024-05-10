@@ -1,0 +1,28 @@
+[  
+  {
+    "function": "pi_sticks",
+    "params": {
+      "s": 1000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "save": true,
+      "show": false,
+      "title_color": "white",
+      "title_size": 40
+    }
+  },
+  {
+    "function": "pi_sticks",
+    "params": {
+      "s": 1000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": ["Oranges_r", "Blues"],
+      "save": true,
+      "show": false,
+      "title_color": "white",
+      "title_size": 40
+    }
+  }
+]
