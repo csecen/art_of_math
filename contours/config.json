@@ -1,0 +1,67 @@
+[
+  {
+    "function": "contours",
+    "params": {
+      "background": "black",
+      "cmap_name": "twilight",
+      "size": [5,15],
+      "save": true,
+      "show": false,
+      "fill": true,
+      "func": "a",
+      "num": 4
+    }
+  },
+  {
+    "function": "contours",
+    "params": {
+      "background": "black",
+      "cmap_name": "twilight",
+      "size": [5,15],
+      "save": true,
+      "show": false,
+      "fill": true,
+      "func": "b",
+      "num": 4
+    }
+  },
+  {
+    "function": "contours",
+    "params": {
+      "background": "black",
+      "cmap_name": "twilight",
+      "size": [5,15],
+      "save": true,
+      "show": false,
+      "fill": true,
+      "func": "c",
+      "num": 4
+    }
+  },
+  {
+    "function": "contours",
+    "params": {
+      "background": "black",
+      "cmap_name": "twilight",
+      "size": [5,15],
+      "save": true,
+      "show": false,
+      "fill": true,
+      "func": "d",
+      "num": 4
+    }
+  },
+  {
+    "function": "contours",
+    "params": {
+      "background": "black",
+      "cmap_name": "twilight",
+      "size": [5,15],
+      "save": true,
+      "show": false,
+      "fill": true,
+      "func": "e",
+      "num": 4
+    }
+  }
+]

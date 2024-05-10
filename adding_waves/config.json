@@ -1,0 +1,14 @@
+[
+  {
+    "function": "adding_waves",
+    "params": {
+      "background": "#38473c",
+      "size": [20,10],
+      "save": true,
+      "colors": ["red"],
+      "show": false,
+      "func": ["cos", "sin"],
+      "scale": [0.5, 2]
+    }
+  }
+]

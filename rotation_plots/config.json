@@ -1,0 +1,98 @@
+[
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": null,
+      "save": true,
+      "show": false,
+      "scale_perc": 0.95,
+      "translate_amt": null,
+      "theta": null,
+      "vary_size": null
+    }
+  },
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": null,
+      "save": true,
+      "show": false,
+      "scale_perc": null,
+      "translate_amt": null,
+      "theta": -5,
+      "vary_size": null
+    }
+  },
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": null,
+      "save": true,
+      "show": false,
+      "scale_perc": null,
+      "translate_amt": 0.3,
+      "theta": -5,
+      "vary_size": null
+    }
+  },
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": null,
+      "save": true,
+      "show": false,
+      "scale_perc": 0.95,
+      "translate_amt": 0.3,
+      "theta": -5,
+      "vary_size": null
+    }
+  },
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": null,
+      "save": true,
+      "show": false,
+      "scale_perc": null,
+      "translate_amt": null,
+      "theta": -5,
+      "vary_size": true
+    }
+  },
+  {
+    "function": "rotation_plots",
+    "params": {
+      "n": 10000,
+      "size": [20,20],
+      "background": "black",
+      "cmap_name": "twilight",
+      "color": "white",
+      "save": true,
+      "show": false,
+      "scale_perc": 0.95,
+      "translate_amt": null,
+      "theta": -5,
+      "vary_size": true
+    }
+  }
+]
