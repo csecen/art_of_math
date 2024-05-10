@@ -17,13 +17,13 @@
   {
     "function": "equation_graphs",
     "params": {
-        "background": "wheat",
-        "size": [30,30],
-        "save": true,
-        "show": false,
-        "color": "darkgreen",
-        "graph": "clover",
-        "font_color": "black"
+      "background": "wheat",
+      "size": [30,30],
+      "save": true,
+      "show": false,
+      "color": "darkgreen",
+      "graph": "clover",
+      "font_color": "black"
     }
   }
 ]

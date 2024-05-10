@@ -6,18 +6,14 @@ from pathlib import Path
 def a(x, y):
     return np.sin(x)**8 + np.cos(20+y*x) * np.cos(y)
 
-
 def b(x, y):
     return np.sin(x) + np.cos(y*x) * np.cos(y)
-
 
 def c(x, y):
     return np.cos(y)**8 + np.cos(20+x*y) * np.tan(x/60)
 
-
 def d(x, y):
     return np.cos(x)*np.sin(y)
-
 
 def e(x, y):
     return np.cos(x*np.pi) + np.sin(2*y*x)
@@ -61,3 +57,4 @@ def produce_image(params):
 
     if show:
         plt.show()
+        
