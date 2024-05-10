@@ -1,14 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
 def produce_image(params):
 
     background = params['background']
     size = tuple(params['size'])
-    filename = params['filename']
+    save = params['save']
     colors = params['colors']
     show = params['show']
+    func = params['func']
+    scale = params['scale']
+
+    funcs = {'cos':np.cos, 'sin':np.sin, 'tan':np.tan}
 
     if len(colors) == 3:
         c1 = colors[0]
@@ -32,10 +37,10 @@ def produce_image(params):
     ax2 = fig.add_axes(rect2, sharex=ax1)
     ax3 = fig.add_axes(rect3, sharex=ax1)
 
-    # TODO: make the functions variable
     x = np.linspace(0, 6.5 * np.pi, 200)
-    y1 = np.sin(x)
-    y2 = np.sin(2 * x)
+
+    y1 = funcs[func[0]](x * scale[0])
+    y2 = funcs[func[1]](x * scale[1])
 
     ax1.plot(x, y1, color=c1, lw=2)
     ax2.plot(x, y2, color=c2, lw=2)
@@ -45,12 +50,16 @@ def produce_image(params):
         for key in ['right', 'top', 'bottom']:
             ax.spines[key].set_visible(False)
 
-    plt.xlim(0, 6.6 * np.pi)
+    plt.xlim(-.3, 6.6 * np.pi)
     ax1.axis('off')
     ax2.axis('off')
     ax3.axis('off')
 
-    if filename:
+    if save:
+        path = f"output/adding_waves/{params['size'][0]}x{params['size'][1]}/"
+        Path(path).mkdir(parents=True, exist_ok=True)
+
+        filename = path + f"{func[0]}_{func[1]}_{scale[0]}_{scale[1]}_{background}_{colors[0] if len(colors) == 1 else '_'.join(colors)}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:
