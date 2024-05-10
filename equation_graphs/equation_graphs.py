@@ -28,6 +28,7 @@ def produce_image(params):
     show = params['show']
     color = params['color']
     graph = params['graph']
+    font_color = params['font_color']
 
     if graph == 'clover':
         fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
@@ -51,7 +52,7 @@ def produce_image(params):
         ax.plot(theta, r2, c=color)
         plt.fill_between(theta, 0, r2, color='w', alpha=0.2)
 
-        ax.set_title(r'$r = \sin(2\theta) + \frac{1}{4}\sin(6\theta)$', math_fontfamily='stix', fontsize=70, color="white", y=1.0, pad=-1700)
+        ax.set_title(r'$r = \sin(2\theta) + \frac{1}{4}\sin(6\theta)$', math_fontfamily='stix', fontsize=70, color=font_color, y=1.0, pad=-1700)
         ax.axis('off')
 
     else:
@@ -68,11 +69,11 @@ def produce_image(params):
         fig.set_size_inches(size)
         fig.patch.set_facecolor(background)
         ax.grid(False)
-        plt.plot(x, y, c=color)
+        plt.plot(x, y, c=color, linewidth=5)
         ax.axis('off')
         ax.set_xlim(-3, 3)
         ax.set_ylim(-2, 3)
-        ax.set_title(r'$x^{\frac{2}{3}} + 0.9(3.3 - x^{2})^{\frac{1}{2}} * \sin(\alpha \pi x)$', math_fontfamily='stix', fontsize=70, color='white', y=1.0, pad=-1700)
+        ax.set_title(r'$x^{\frac{2}{3}} + 0.9(3.3 - x^{2})^{\frac{1}{2}} * \sin(\alpha \pi x)$', math_fontfamily='stix', fontsize=70, color=font_color, y=1.0, pad=-1700)
 
     if save:
         path = f"output/equation_graphs/{params['graph']}/{params['size'][0]}x{params['size'][1]}/"
