@@ -1,6 +1,6 @@
-import argparse
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
 
 
 # global list of twin primes
@@ -15,7 +15,7 @@ def produce_image(params):
     size = tuple(params['size'])
     background = params['background']
     cmap_name = params['cmap']
-    filename = params['filename']
+    save = params['save']
     show = params['show']
     
     # list of linearly spaced points being applied to function to for a line
@@ -49,8 +49,14 @@ def produce_image(params):
     # optionally save and show the plot
     plt.xlim([-5, 200000])
     plt.ylim([0, 3000])
-    if filename:
-        plt.savefig(filename, bbox_inches='tight', pad_inches=0)
+
+    if save:
+        path = f"output/primes/twin/{params['size'][0]}x{params['size'][1]}/"
+        Path(path).mkdir(parents=True, exist_ok=True)
+
+        filename = path + f"{background}_{cmap_name}.png"
+        plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:
         plt.show()
+

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utils import compute_primes as cp
 from functools import reduce
+from pathlib import Path
 
 
 def factors(n):
@@ -16,7 +17,7 @@ def produce_image(params):
     background = params['background']
     cmap_name = params['cmap_name']
     colors = params['colors']
-    filename = params['filename']
+    save = params['save']
     show = params['show']
     primes_only = params['primes_only']
 
@@ -82,7 +83,6 @@ def produce_image(params):
     fig.patch.set_facecolor(background)
     ax.grid(False)
 
-    # plt.scatter(data[:, 0], data[:, 1], c=data[:, 2], s=data[:, 3], cmap=cmap_name)
     if primes_only:
         mask = data[:, 2] == 1
         if colors:
@@ -97,10 +97,13 @@ def produce_image(params):
         else:
             plt.scatter(data[:, 0], data[:, 1], c=data[:, 2], s=data[:, 3], cmap=cmap_name)
 
-    # plt.scatter(data[:, 0], data[:, 1], c=data[:, 2], s=data[:, 3])
     ax.axis('off')
 
-    if filename:
+    if save:
+        path = f"output/primes/ulam/{params['size'][0]}x{params['size'][1]}/"
+        Path(path).mkdir(parents=True, exist_ok=True)
+
+        filename = path + f"{background}_{cmap_name if cmap_name else '_'.join(colors)}_{'primes' if primes_only else 'all'}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:

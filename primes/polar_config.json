@@ -1,0 +1,38 @@
+[
+  {
+    "function": "polar_primes",
+    "params": {
+      "n": 50000,
+      "background": "black",
+      "size": [20,20],
+      "save": true,
+      "color": null,
+      "cmap": "twilight",
+      "show": false
+    }
+  },
+  {
+    "function": "polar_primes",
+    "params": {
+      "n": 50000,
+      "background": "black",
+      "size": [20,20],
+      "save": true,
+      "color": null,
+      "cmap": "bone",
+      "show": false
+    }
+  },
+  {
+    "function": "polar_primes",
+    "params": {
+      "n": 50000,
+      "background": "black",
+      "size": [20,20],
+      "save": true,
+      "color": "green",
+      "cmap": null,
+      "show": false
+    }
+  }
+]

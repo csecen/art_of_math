@@ -1,0 +1,23 @@
+[
+  {
+    "function": "twin_primes",
+    "params": {
+      "background": "black",
+      "size": [20,20],
+      "save": true,
+      "cmap": "twilight",
+      "show": false
+    }
+  },
+  {
+    "function": "twin_primes",
+    "params": {
+      "background": "black",
+      "size": [20,20],
+      "save": true,
+      "cmap": "bone",
+      "show": false
+    }
+  }
+]
+  

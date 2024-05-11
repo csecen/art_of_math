@@ -1,0 +1,54 @@
+[
+  {
+    "function": "ulam_spiral",
+    "params": {
+      "n": 34040,
+      "background": "black",
+      "cmap_name": "viridis",
+      "colors": null,
+      "size": [20,20],
+      "save": true,
+      "show": false,
+      "primes_only": false
+    }
+  },
+  {
+    "function": "ulam_spiral",
+    "params": {
+      "n": 34040,
+      "background": "linen",
+      "cmap_name": "viridis",
+      "colors": ["coral", "navy"],
+      "size": [20,20],
+      "save": true,
+      "show": false,
+      "primes_only": false
+    }
+  },
+  {
+    "function": "ulam_spiral",
+    "params": {
+      "n": 34040,
+      "background": "black",
+      "cmap_name": "viridis",
+      "colors": "mediumseagreen",
+      "size": [20,20],
+      "save": true,
+      "show": false,
+      "primes_only": true
+    }
+  },
+  {
+    "function": "ulam_spiral",
+    "params": {
+      "n": 34040,
+      "background": "black",
+      "cmap_name": "cool",
+      "colors": null,
+      "size": [20,20],
+      "save": true,
+      "show": false,
+      "primes_only": true
+    }
+  }
+]
