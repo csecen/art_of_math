@@ -33,7 +33,6 @@ def derivs(state, t, G, L1, L2, M1, M2):
 
     return dydx
 
-
 def track(i, pend, line, line2):
     thisx = [0, pend[0][0][i], pend[0][2][i]]
     thisy = [1, pend[0][1][i]+1, pend[0][3][i]+1]
@@ -50,7 +49,6 @@ def tracer(i, pend, line, line2):
     line2.set_data(pend[0][2][i-20:i+1], pend[0][3][i-20:i+1]+1)
     return line, line2,
 
-
 def multi(i, pend, lines):
     for idx, l in enumerate(lines):
         thisx = [0, pend[idx][0][i], pend[idx][2][i]]
@@ -58,7 +56,6 @@ def multi(i, pend, lines):
         l.set_data(thisx, thisy)
     
     return lines
-
 
 def produce_image(params):
     # get the params parameters
@@ -123,24 +120,14 @@ def produce_image(params):
     filename = path + f"{background}{'_' + tracer_color if tracer_color else ''}{'_' + pend_color if pend_color else ''}{'_' + cmap_name if cmap_name else ''}"
 
     if style in stf:
-    # if style == 'track':
         line, = ax.plot([], [], color=pend_color, lw=2)
         line2, = ax.plot([], [], color=tracer_color, lw=2)
         
         ani = animation.FuncAnimation(fig, partial(stf[style], pend=pendulums, line=line, line2=line2), range(1, len(y)),
                                       interval=dt*1000, blit=True)
         ani.save(f'{filename}.gif', writer='pillow', fps=1 / dt)
-
-    # elif style == 'tracer':
-    #     line, = ax.plot([], [], color=pend_color, lw=2)
-    #     line2, = ax.plot([], [], color=tracer_color, lw=2)
-        
-    #     ani = animation.FuncAnimation(fig, partial(tracer, pend=pendulums, line=line, line2=line2), range(1, len(y)),
-    #                                   interval=dt*1000, blit=True)
-    #     ani.save(params['filename'], writer='pillow', fps=1 / dt)
     
     elif 'multi' in style:
-    # elif style == 'multi_ani':
         cmap = plt.get_cmap(cmap_name)
         colors = cmap(np.linspace(0, 1, len(pendulums)))
         
@@ -160,21 +147,6 @@ def produce_image(params):
                 ax.add_line(l)
 
             plt.savefig(f'{filename}.png', bbox_inches='tight', pad_inches=0, dpi=400)
-    
-    # elif style == 'multi_still':
-    #     cmap = plt.get_cmap(cmap_name)
-    #     colors = cmap(np.linspace(0, 1, len(pendulums)))
-
-    #     lines = []
-    #     for i in range(len(colors)):
-    #         line = ax.plot([], [], color=colors[i], lw=2)
-    #         lines.append(line[0])
-
-    #     lines = multi(frame_idx, pend=pendulums, lines=lines)
-    #     for l in lines:
-    #         ax.add_line(l)
-
-    #     plt.savefig(params['filename'], bbox_inches='tight', pad_inches=0, dpi=400)
 
     elif style == 'path':
         if tracer_color:
