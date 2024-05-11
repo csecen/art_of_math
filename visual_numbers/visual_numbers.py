@@ -77,10 +77,10 @@ def produce_image(params):
         ax.set_title(r'$\mathbb{%s}$' %(str(title)), fontsize=70, color="white", y=1.0, pad=-20)
     
     if save:
-        path = f"output/visual_numbers/{params['size'][0]}x{params['size'][1]}/"
+        path = f"output/visual_numbers/{constant}/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{gradient if gradient else background}_{color}_theta{theta}_n{n}_{constant}{"_label" if label else ""}.png'
+        filename = path + f'{gradient if gradient else background}_{color}_theta{theta}_n{n}{"_label" if label else ""}.png'
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
     if show:
         plt.show()
