@@ -1,21 +1,16 @@
-### Conway's Game of Life 
+### The Art of Math
 
-##### The Game Of Life was developed by John Conway as a way to show that simple rules can lead to complex interaction. More information can be found [here](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
+##### Mathematics can be a complicated subject, but from that complexity can come beauty. This project is all about exploring different theorems and simple functions and the different ways to represent this beauty.
 
-##### The goal of this application is to provide the code for the game, to allow users to play with these rules and experiement with the possible interaction. Running the code in fairly simple:
-1) Import the code using <code>from gol import Game_Of_Life as gol</code>
-2) Create an instance of the game <code>life = gol(X)</code>. The value X must be an integer and represents the size of the board that will be create, X by X.
-3) Run the game will <code>life.run(steps, animate, filename)</code>
-    - The steps argument is an integer value representing the number of step you want the game to take, it is required
-    - The animate argument is a boolean values that indicates whether you want the game to be displayed when you call run. It defaults to true.
-    - If animate is true, the filename argument can be provided if you wish to save the animation.
+##### The parameters for the outputs are provided using json configuration files for each of the theorems or visuals. Example config files are provided with the directories. In order to produce the images yourself, first you must clone the repository, install all necessary libraries, and then run the desired config in the command line.
 
-##### The following code will produce the gif below:
+##### The following example will produce the twin primes graph below, assuming you are in the outer art_of_math directory:
 
-    from gol import Game_Of_Life as gol
-    life = gol(68)
-    life.run(100, filename="gol.gif")
+    python art_of_math.py primes/twin_config.json
 
-![Game of Life example run](/clips/gol.gif)
 
-##### When creating an instance of the game the board is randomly generated. If you want to provide your own board, first create a square numpy 2d array. Then just call the define_board method as follows: <code>life.define_board(board)</code> where the board argument is the numpy array you just created. Then you can run the game normally.
+![Twin prime example](/output/primes/twin/20x20/black_twilight.png)
+
+##### For a more detailed description of the theorems themselves and the specific run parameter required, see the ReadMe files in each directory.
+
+- [Primes](/primes/README.md)
