@@ -6,8 +6,7 @@ import scipy.integrate as integrate
 import matplotlib.animation as animation
 from matplotlib.collections import LineCollection
 from functools import partial
-import argparse
-import json
+from pathlib import Path
     
 
 def derivs(state, t, G, L1, L2, M1, M2):
@@ -53,7 +52,6 @@ def tracer(i, pend, line, line2):
 
 
 def multi(i, pend, lines):
-    
     for idx, l in enumerate(lines):
         thisx = [0, pend[idx][0][i], pend[idx][2][i]]
         thisy = [1, pend[idx][1][i]+1, pend[idx][3][i]+1]
@@ -62,43 +60,37 @@ def multi(i, pend, lines):
     return lines
 
 
-def produce_image(config):
-    # parser = argparse.ArgumentParser(description='Produce different depictions of a double pendulum')
-    # parser.add_argument('filename', help='name of config file')
-    # args = parser.parse_args()
-    #
-    # config_file = vars(args)['filename']
-    #
-    # with open(config_file, 'r') as f:
-    #     config = json.load(f)
-
-    # get the config parameters
-    if 'frame_idx' not in config:
-        frame_idx = None
-    else:
-        frame_idx = config['frame_idx']
+def produce_image(params):
+    # get the params parameters
+    frame_idx = params['frame_idx']
+    background = params['background']
+    size = tuple(params['size'])
+    style = params['style']
+    cmap_name = params['cmap_name']
+    tracer_color = params['tracer_color']
+    pend_color = params['pend_color']
 
     # get the parameters of the pendulum
-    G = config['G']  # acceleration due to gravity, in m/s^2
-    L1 = config['L1']  # length of pendulum 1 in m
-    L2 = config['L2']  # length of pendulum 2 in m
-    M1 = config['M1']  # mass of pendulum 1 in kg
-    M2 = config['M2']  # mass of pendulum 2 in kg
+    G = params['G']  # acceleration due to gravity, in m/s^2
+    L1 = params['L1']  # length of pendulum 1 in m
+    L2 = params['L2']  # length of pendulum 2 in m
+    M1 = params['M1']  # mass of pendulum 1 in kg
+    M2 = params['M2']  # mass of pendulum 2 in kg
 
     # th1 and th2 are the initial angles (degrees)
     # w10 and w20 are the initial angular velocities (degrees per second)
-    th1 = config['th1']
-    w1 = config['w1']
-    th2 = config['th2']
-    w2 = config['w2']
+    th1 = params['th1']
+    w1 = params['w1']
+    th2 = params['th2']
+    w2 = params['w2']
     
     # create a time array from 0..100 sampled at 0.05 second steps
-    dt = config['dt']
-    time = config['time']
+    dt = params['dt']
+    time = params['time']
     t = np.arange(0, time, dt)
     
     pendulums = []
-    theta_1s = np.linspace(th1, th1+.01, config['num_pendulums'])
+    theta_1s = np.linspace(th1, th1+.01, params['num_pendulums'])
     
     for th in theta_1s:
         # initial state
@@ -115,79 +107,85 @@ def produce_image(config):
         
         pendulums.append((x1, y1, x2, y2))
         
-#     fig = plt.figure()
-#     fig.patch.set_facecolor('black')
-#     ax = fig.add_subplot(111, autoscale_on=True, xlim=(-4, 4), ylim=(-4, 4))
-#     ax.set_aspect('equal')
-#     ax.axis('off')
-
-#     fig, ax = plt.subplots()
     fig = plt.figure()
-    fig.set_size_inches((config['sizex'], config['sizey']))
+    fig.set_size_inches(size)
     fig.patch.set_visible(True)
-    fig.patch.set_facecolor(config['background'])
+    fig.patch.set_facecolor(background)
     ax = fig.add_subplot(111, autoscale_on=True, xlim=(-4, 4), ylim=(-4, 4))
     ax.set_aspect('equal')
     ax.axis('off')
 
-    if config['style'] == 'track':
-        line, = ax.plot([], [], color='azure', lw=2)
-        line2, = ax.plot([], [], color=config['color'], lw=2)
+    stf = {'track':track, 'tracer':tracer}   # style to function mapping
+
+    path = f"output/pendulum/{style}/{params['size'][0]}x{params['size'][1]}/"
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+    filename = path + f"{background}{'_' + tracer_color if tracer_color else ''}{'_' + pend_color if pend_color else ''}{'_' + cmap_name if cmap_name else ''}"
+
+    if style in stf:
+    # if style == 'track':
+        line, = ax.plot([], [], color=pend_color, lw=2)
+        line2, = ax.plot([], [], color=tracer_color, lw=2)
         
-        ani = animation.FuncAnimation(fig, partial(track, pend=pendulums, line=line, line2=line2), range(1, len(y)),
+        ani = animation.FuncAnimation(fig, partial(stf[style], pend=pendulums, line=line, line2=line2), range(1, len(y)),
                                       interval=dt*1000, blit=True)
-        ani.save(config['filename'], writer='pillow', fps=1 / dt)
-    elif config['style'] == 'tracer':
-        line, = ax.plot([], [], color='azure', lw=2)
-        line2, = ax.plot([], [], color=config['color'], lw=2)
+        ani.save(f'{filename}.gif', writer='pillow', fps=1 / dt)
+
+    # elif style == 'tracer':
+    #     line, = ax.plot([], [], color=pend_color, lw=2)
+    #     line2, = ax.plot([], [], color=tracer_color, lw=2)
         
-        ani = animation.FuncAnimation(fig, partial(tracer, pend=pendulums, line=line, line2=line2), range(1, len(y)),
-                                      interval=dt*1000, blit=True)
-        ani.save(config['filename'], writer='pillow', fps=1 / dt)
-    elif config['style'] == 'multi_ani':
-        cmap = plt.get_cmap(config['cmap_name'])
-        colors = cmap(np.linspace(0, 1, len(pendulums)))
-        
-        lines = []
-        for i in range(len(colors)):
-            line = ax.plot([], [], color=colors[i], lw=2)
-            lines.append(line[0])
-        
-        ani = animation.FuncAnimation(fig, partial(multi, pend=pendulums, lines=lines), range(1, len(y)),
-                                      interval=dt*1000, blit=True)
-        ani.save(config['filename'], writer='pillow', fps=1 / dt)
+    #     ani = animation.FuncAnimation(fig, partial(tracer, pend=pendulums, line=line, line2=line2), range(1, len(y)),
+    #                                   interval=dt*1000, blit=True)
+    #     ani.save(params['filename'], writer='pillow', fps=1 / dt)
     
-    elif config['style'] == 'multi_still':
-        cmap = plt.get_cmap(config['cmap_name'])
+    elif 'multi' in style:
+    # elif style == 'multi_ani':
+        cmap = plt.get_cmap(cmap_name)
         colors = cmap(np.linspace(0, 1, len(pendulums)))
-
+        
         lines = []
         for i in range(len(colors)):
             line = ax.plot([], [], color=colors[i], lw=2)
             lines.append(line[0])
+        
+        if 'ani' in style:
+            ani = animation.FuncAnimation(fig, partial(multi, pend=pendulums, lines=lines), range(1, len(y)),
+                                        interval=dt*1000, blit=True)
+            ani.save(f'{filename}.gif', writer='pillow', fps=1 / dt)
 
-        lines = multi(frame_idx, pend=pendulums, lines=lines)
-        for l in lines:
-            ax.add_line(l)
+        else:
+            lines = multi(frame_idx, pend=pendulums, lines=lines)
+            for l in lines:
+                ax.add_line(l)
 
-        plt.savefig(config['filename'], bbox_inches='tight', pad_inches=0, dpi=400)
+            plt.savefig(f'{filename}.png', bbox_inches='tight', pad_inches=0, dpi=400)
+    
+    # elif style == 'multi_still':
+    #     cmap = plt.get_cmap(cmap_name)
+    #     colors = cmap(np.linspace(0, 1, len(pendulums)))
 
-    elif config['style'] == 'path':
-        if 'color' in config:
-            ax.plot(pendulums[0][2], pendulums[0][3]+1, color=config['color'])
+    #     lines = []
+    #     for i in range(len(colors)):
+    #         line = ax.plot([], [], color=colors[i], lw=2)
+    #         lines.append(line[0])
+
+    #     lines = multi(frame_idx, pend=pendulums, lines=lines)
+    #     for l in lines:
+    #         ax.add_line(l)
+
+    #     plt.savefig(params['filename'], bbox_inches='tight', pad_inches=0, dpi=400)
+
+    elif style == 'path':
+        if tracer_color:
+            ax.plot(pendulums[0][2], pendulums[0][3]+1, color=tracer_color)
         else:
             points = np.array([pendulums[0][2], pendulums[0][3]+1]).T.reshape(-1, 1, 2)
             segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
             norm = plt.Normalize(pendulums[0][3].min(), pendulums[0][3].max())
-            lc = LineCollection(segments, cmap='Spectral', norm=norm)
+            lc = LineCollection(segments, cmap=cmap_name, norm=norm)
             lc.set_array(pendulums[0][3])
             ax.add_collection(lc)
         
-        plt.savefig(config['filename'], bbox_inches='tight', pad_inches=0, dpi=400)
-    
-    
-    
-    
-# if __name__ == '__main__':
-#     main()
+        plt.savefig(f'{filename}.png', bbox_inches='tight', pad_inches=0, dpi=400)
