@@ -1,0 +1,54 @@
+[
+  {
+    "function": "amazing_graphs",
+    "params": {
+      "func": "hofstadters",
+      "background": "black",
+      "size": [20,10],
+      "save": true,
+      "colors": null,
+      "cmap_name": "twilight",
+      "show": false,
+      "marker": "o"
+    }
+  },
+  {
+    "function": "amazing_graphs",
+    "params": {
+      "func": "forrest_fire",
+      "background": "black",
+      "size": [20,10],
+      "save": true,
+      "colors": null,
+      "cmap_name": "hot",
+      "show": false,
+      "marker": "1"
+    }
+  },
+  {
+    "function": "amazing_graphs",
+    "params": {
+      "func": "remy",
+      "background": "black",
+      "size": [20,10],
+      "save": true,
+      "cmap_name": "Blues",
+      "colors": null,
+      "show": false,
+      "marker": "."
+    }
+  },
+  {
+    "function": "amazing_graphs",
+    "params": {
+      "func": "primes",
+      "background": "black",
+      "size": [20,10],
+      "save": true,
+      "cmap_name": "Blues",
+      "colors": null,
+      "show": false,
+      "marker": "."
+    }
+  }
+]
