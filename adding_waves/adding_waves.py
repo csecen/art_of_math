@@ -59,7 +59,7 @@ def produce_image(params):
         path = f"output/adding_waves/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f"{func[0]}_{func[1]}_{scale[0]}_{scale[1]}_{background}_{colors[0] if len(colors) == 1 else '_'.join(colors)}.png"
+        filename = path + f"{func[0]}_{func[1]}_{scale[0]}_{scale[1]}_{background.replace('#','')}_{colors[0] if len(colors) == 1 else '_'.join(colors)}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:

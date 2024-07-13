@@ -6,7 +6,5 @@
 
     python art_of_math.py adding_waves/config.json
 
-![Adding Waves example](/../output/adding_waves/20x10/cos_sin_1_1_#38473c_red.png)
 
-
-![Adding Waves example](/output/adding_waves/20x10/cos_sin_1_1_#38473c_red.png)
+![Adding Waves example](/output/adding_waves/20x10/cos_sin_1_2_38473c_red.png)
