@@ -14,4 +14,5 @@
 #### For a more detailed description of the theorems themselves and the specific run parameters required, see the README files in each directory:
 
 - [Adding Waves](/adding_waves/README.md)
+- [Amazing Graphs](/amazing_graphs/README.md)
 - [Primes](/primes/README.md)
