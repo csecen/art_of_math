@@ -5,11 +5,12 @@
       "func": "hofstadters",
       "background": "black",
       "size": [20,10],
-      "save": true,
+      "save": false,
       "colors": null,
       "cmap_name": "twilight",
-      "show": false,
-      "marker": "o"
+      "show": true,
+      "marker": "o",
+      "gradient": null
     }
   },
   {
@@ -18,11 +19,12 @@
       "func": "forrest_fire",
       "background": "black",
       "size": [20,10],
-      "save": true,
+      "save": false,
       "colors": null,
       "cmap_name": "hot",
-      "show": false,
-      "marker": "1"
+      "show": true,
+      "marker": "1",
+      "gradient": "bone"
     }
   },
   {
@@ -35,7 +37,8 @@
       "cmap_name": "Blues",
       "colors": null,
       "show": false,
-      "marker": "."
+      "marker": ".",
+      "gradient": false
     }
   },
   {
@@ -48,7 +51,8 @@
       "cmap_name": "Blues",
       "colors": null,
       "show": false,
-      "marker": "."
+      "marker": ".",
+      "gradient": false
     }
   }
 ]
