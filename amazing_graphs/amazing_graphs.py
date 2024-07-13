@@ -1,18 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from matplotlib import cm
 from utils import compute_primes as cp
 from pathlib import Path
 
 
 def forrest_fire(params):
-    # background = params['background']
-    # size = tuple(params['size'])
-    # save = params['save']
-    # colors = params['colors']
-    # cmap_name = params['cmap']
-    # show = params['show']
-
     if os.path.exists('/home/connor/Projects/art_of_math/amazing_graphs/forest_fire.txt'):
         with open('/home/connor/Projects/art_of_math/amazing_graphs/forest_fire.txt', 'r') as f:
             data = f.readlines()
@@ -44,39 +38,9 @@ def forrest_fire(params):
     nx = np.random.choice(x, int(len(x) * 1), replace=False)
     ny = y[nx]
 
-    # size = (60, 60)
-
-    # fig, ax = plt.subplots()
-    # fig.set_size_inches(size)
-    # fig.patch.set_visible(True)
-    # fig.patch.set_facecolor(background)
-    # ax.axis('off')
-
     return nx, ny
 
-    if colors:
-        plt.scatter(nx, ny, c=colors, marker='1')
-    else:
-        plt.scatter(nx, ny, c=nx, cmap=cmap_name, marker='1')
-
-    # if save:
-    #     path = f"output/amazing_graphs/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
-    #     Path(path).mkdir(parents=True, exist_ok=True)
-
-    #     filename = path + f'{background}_{colors if colors else cmap_name}.png'
-    #     plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
-    # if show:
-    #     plt.show()
-
-
 def hofstadters(params):
-    # background = params['background']
-    # size = tuple(params['size'])
-    # save = params['save']
-    # colors = params['colors']
-    # cmap_name = params['cmap_name']
-    # show = params['show']
-
     l = []
     x = range(1, 10000001)
 
@@ -95,40 +59,9 @@ def hofstadters(params):
             val = first + second
             l.append(val)
 
-    # size = (20, 10)
-
-    # fig, ax = plt.subplots()
-    # fig.set_size_inches(size)
-    # fig.patch.set_visible(True)
-    # fig.patch.set_facecolor(background)
-    # ax.axis('off')
-
     return x, l
 
-    if colors:
-        # plt.scatter(x, l, c=x, edgecolors=colors)
-        plt.scatter(x, l, c=colors)
-    else:
-        plt.scatter(x, l, c=x, cmap=cmap_name)
-
-    # if save:
-    #     path = f"output/amazing_graphs/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
-    #     Path(path).mkdir(parents=True, exist_ok=True)
-
-    #     filename = path + f'{background}_{colors if colors else cmap_name}.png'
-    #     plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
-    # if show:
-    #     plt.show()
-
-
 def primes(params):
-    # background = params['background']
-    # size = tuple(params['size'])
-    # save = params['save']
-    # colors = params['colors']
-    # cmap_name = params['cmap']
-    # show = params['show']
-
     prime_vals = cp.primesfrom2to(250000)
 
     vals = []
@@ -140,38 +73,10 @@ def primes(params):
         vals.append(val)
 
     x = range(len(vals))
-    # fig, ax = plt.subplots()
-    # fig.set_size_inches(size)
-    # fig.patch.set_visible(True)
-    # fig.patch.set_facecolor(background)
-    # ax.axis('off')
 
     return x, vals
 
-    if colors:
-        plt.scatter(x, vals, c=colors)
-        # plt.scatter(x, vals, c=x, edgecolors=colors)
-    else:
-        plt.scatter(x, vals, c=x, cmap=cmap_name)
-
-    # if save:
-    #     path = f"output/amazing_graphs/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
-    #     Path(path).mkdir(parents=True, exist_ok=True)
-
-    #     filename = path + f'{background}_{colors if colors else cmap_name}.png'
-    #     plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
-    # if show:
-    #     plt.show()
-
-
 def remy(params):
-    # background = params['background']
-    # size = tuple(params['size'])
-    # save = params['save']
-    # colors = params['colors']
-    # cmap_name = params['cmap']
-    # show = params['show']
-
     n = 10000
     l = []
     g = n * [0]
@@ -183,37 +88,18 @@ def remy(params):
         l.append(a)
 
     x = range(len(l))
-    # fig, ax = plt.subplots()
-    # fig.set_size_inches(size)
-    # fig.patch.set_visible(True)
-    # fig.patch.set_facecolor(background)
-    # ax.axis('off')
 
     return x, l
-
-    if colors:
-        plt.scatter(x, l, c=colors)
-    else:
-        plt.scatter(x, l, c=x, cmap=cmap_name, marker='.')
-
-    # if save:
-    #     path = f"output/amazing_graphs/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
-    #     Path(path).mkdir(parents=True, exist_ok=True)
-
-    #     filename = path + f'{background}_{colors if colors else cmap_name}.png'
-    #     plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
-    # if show:
-    #     plt.show()
-
 
 def produce_image(params):
     background = params['background']
     size = tuple(params['size'])
     save = params['save']
-    colors = params['colors']
+    color = params['colors']
     cmap_name = params['cmap_name']
     show = params['show']
     marker = params['marker']
+    gradient = params['gradient']
 
     fig, ax = plt.subplots()
     fig.set_size_inches(size)
@@ -231,15 +117,29 @@ def produce_image(params):
         x, y = remy(params)
 
     if colors:
-        plt.scatter(x, y, c=colors, marker=marker)
+        plt.scatter(x, y, c=color, marker=marker)
     else:
         plt.scatter(x, y, c=x, cmap=cmap_name, marker=marker)
+
+    if gradient:
+        am = np.argmax(np.array([abs(plt.xlim()[0] - plt.xlim()[1]), abs(plt.ylim()[0] - plt.ylim()[1])]))
+        if am == 0:
+            diff = abs(plt.xlim()[0] - plt.xlim()[1]) - abs(plt.ylim()[0] - plt.ylim()[1])
+            hdiff = diff / 2
+            plotlim = plt.xlim() + (plt.ylim()[0] - hdiff, plt.ylim()[1] + hdiff)
+
+        else:
+            diff = abs(plt.ylim()[0] - plt.ylim()[1]) - abs(plt.xlim()[0] - plt.xlim()[1])
+            hdiff = diff / 2
+            plotlim = (plt.xlim()[0] - hdiff, plt.xlim()[1] + hdiff) + plt.ylim()
+
+        ax.imshow([[0, 0], [1, 1]], cmap=cm.get_cmap(gradient), interpolation='bicubic', extent=plotlim)#, aspect='equal')
 
     if save:
         path = f"output/amazing_graphs/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{background}_{colors if colors else cmap_name}.png'
+        filename = path + f"{gradient if gradient else background.replace('#','')}_{color.replace('#','') if color else cmap_name}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
     if show:
         plt.show()
