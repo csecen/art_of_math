@@ -15,4 +15,7 @@
 
 - [Adding Waves](/adding_waves/README.md)
 - [Amazing Graphs](/amazing_graphs/README.md)
+- [Contours](/contours/README.md)
+- [Double Pendulum](/double_pendulum/README.md)
+- [Equation Graphs](/equation_graphs/README.md)
 - [Primes](/primes/README.md)
