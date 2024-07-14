@@ -52,7 +52,7 @@ def produce_image(params):
         path = f"output/contours/{params['func']}/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{background}_{cmap_name}.png'
+        filename = path + f"{background.replace('#','')}_{cmap_name}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=0, dpi=400)
 
     if show:
