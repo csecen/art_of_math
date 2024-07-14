@@ -117,7 +117,7 @@ def produce_image(params):
     path = f"output/pendulum/{style}/{params['size'][0]}x{params['size'][1]}/"
     Path(path).mkdir(parents=True, exist_ok=True)
 
-    filename = path + f"{background}{'_' + tracer_color if tracer_color else ''}{'_' + pend_color if pend_color else ''}{'_' + cmap_name if cmap_name else ''}"
+    filename = path + f"{background.replace('#','')}{'_' + tracer_color.replace('#','') if tracer_color else ''}{'_' + pend_color.replace('#','') if pend_color else ''}{'_' + cmap_name if cmap_name else ''}_{L1}_{L2}"
 
     if style in stf:
         line, = ax.plot([], [], color=pend_color, lw=2)
