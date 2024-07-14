@@ -79,7 +79,7 @@ def produce_image(params):
         path = f"output/equation_graphs/{params['graph']}/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{background}_{color}.png'
+        filename = path + f"{background.replace('#','')}_{color.replace('#','')}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=1, dpi=400)
 
     if show:
