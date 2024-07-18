@@ -7,6 +7,7 @@ import matplotlib.animation as animation
 from matplotlib.collections import LineCollection
 from functools import partial
 from pathlib import Path
+import random
     
 
 def derivs(state, t, G, L1, L2, M1, M2):
@@ -117,7 +118,7 @@ def produce_image(params):
     path = f"output/pendulum/{style}/{params['size'][0]}x{params['size'][1]}/"
     Path(path).mkdir(parents=True, exist_ok=True)
 
-    filename = path + f"{background.replace('#','')}{'_' + tracer_color.replace('#','') if tracer_color else ''}{'_' + pend_color.replace('#','') if pend_color else ''}{'_' + cmap_name if cmap_name else ''}_{L1}_{L2}"
+    filename = path + f"{background.replace('#','')}{'_' + tracer_color.replace('#','') if tracer_color else ''}{'_' + '_'.join(pend_color).replace('#','') if pend_color else ''}{'_' + cmap_name if cmap_name else ''}_{L1}_{L2}"
 
     if style in stf:
         line, = ax.plot([], [], color=pend_color, lw=2)
@@ -128,8 +129,11 @@ def produce_image(params):
         ani.save(f'{filename}.gif', writer='pillow', fps=1 / dt)
     
     elif 'multi' in style:
-        cmap = plt.get_cmap(cmap_name)
-        colors = cmap(np.linspace(0, 1, len(pendulums)))
+        if not cmap_name and isinstance(pend_color, list):
+            colors = random.choices(pend_color, k=params['num_pendulums'])
+        else:
+            cmap = plt.get_cmap(cmap_name)
+            colors = cmap(np.linspace(0, 1, len(pendulums)))
         
         lines = []
         for i in range(len(colors)):

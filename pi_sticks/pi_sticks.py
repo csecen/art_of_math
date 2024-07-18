@@ -1,4 +1,5 @@
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from pathlib import Path
@@ -11,6 +12,8 @@ def produce_image(params):
     size = tuple(params['size'])
     background = params['background']
     cmap_name = params['cmap_name']
+    colors = params['colors']
+    vert_color = params['vert_color']
     save = params['save']
     show = params['show']
     title_color = params['title_color']
@@ -22,7 +25,7 @@ def produce_image(params):
     fig.patch.set_facecolor(background)
     ax.grid(False)
     vls = [-10, -5, 0, 5, 10]
-    plt.vlines(x=vls, ymin=-15, ymax=15)
+    plt.vlines(x=vls, ymin=-15, ymax=15, colors=vert_color)
 
     x = 4
     y = 0
@@ -31,7 +34,7 @@ def produce_image(params):
 
     thetas = np.random.randint(361, size=s)
 
-    if isinstance(cmap_name, list):
+    if cmap_name and isinstance(cmap_name, list):
         top = cm.get_cmap(cmap_name[0], s // 2)
         bottom = cm.get_cmap(cmap_name[1], s // 2)
 
@@ -39,10 +42,13 @@ def produce_image(params):
                           bottom(np.linspace(0, 1, s // 2))))
 
         color_name = '_'.join(cmap_name)
-    else:
+    elif cmap_name:
         cmap = cm.get_cmap(cmap_name, 1000)
         cmap_vals = np.linspace(0, 1, s)
         color_name = cmap_name
+    else:
+        color_name = '_'.join(colors).replace('#', '')
+        colors = random.choices(colors, k=s)
 
     for idx, theta in enumerate(thetas):
         nx = x * np.cos(np.deg2rad(theta)) - y * np.sin(np.deg2rad(theta))
@@ -53,8 +59,10 @@ def produce_image(params):
 
         if isinstance(cmap_name, list):
             plt.plot([xt, nx + xt], [yt, ny + yt], c=cmap[idx])
-        else:
+        elif cmap_name:
             plt.plot([xt, nx + xt], [yt, ny + yt], c=cmap(cmap_vals[idx]))
+        else:
+            plt.plot([xt, nx + xt], [yt, ny + yt], c=colors[idx])
 
         for l in vls:
             if min(xt, nx + xt) <= l <= max(xt, nx + xt):
@@ -69,7 +77,7 @@ def produce_image(params):
         path = f"output/pi_sticks/{params['size'][0]}x{params['size'][1]}/"
         Path(path).mkdir(parents=True, exist_ok=True)
 
-        filename = path + f'{background}_{color_name}.png'
+        filename = path + f"{background.replace('#','')}_{color_name}.png"
         plt.savefig(filename, bbox_inches='tight', pad_inches=1, dpi=400)
 
     if show:
