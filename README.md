@@ -18,4 +18,5 @@
 - [Contours](/contours/README.md)
 - [Double Pendulum](/double_pendulum/README.md)
 - [Equation Graphs](/equation_graphs/README.md)
+- [Pi Sticks](/pi_sticks/README.md)
 - [Primes](/primes/README.md)
